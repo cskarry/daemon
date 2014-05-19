@@ -1,0 +1,18 @@
+#!/bin/sh
+
+if [ $# -eq 0 ] ; then
+  cat << EOF >&2
+Usage: $0 <groovy filepath> [<data filepath> <readonly=true|false>]
+
+EOF
+  exit 1
+fi
+
+export SMALL_OUTPUT="${talos_output}/small"
+BASE="${talos_task_deployhome}"
+LOCALCLASSPATH=`echo $BASE/lib/*.jar | tr ' ' ':'`
+mkdir -p $SMALL_OUTPUT
+STDOUT=$SMALL_OUTPUT/small_laucher_console.log
+export CLASSPATH=$LOCALCLASSPATH
+export JAVA_DEBUG_OPT="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=9329,suspend=n"
+nohup java $JAVA_DEBUG_OPT -DtaskName=smallLaucher -Dsmall.tasker.groovymode=true -Dsmall.tasker.readonly=$3 -Dsmall.tasker.withdata=$2 -cp $CLASSPATH com.alibaba.china.talos.small.SmallLaucher $1 $2 1>>$STDOUT 2>>$STDOUT &

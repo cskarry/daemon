@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="gb2312"?>
+<config description="自动配置：bops-daemon">
+    <script>
+        <generate template="log4j.xml.vm" destfile="log4j.xml" charset="GBK"/>
+        <generate template="applicationContext.xml" destfile="applicationContext.xml" charset="GBK"/>
+        <generate template="bean/daemon.xml" destfile="daemon.xml" charset="GBK"/>
+        <generate template="hsf-client.properties" destfile="hsf-client.properties" charset="GBK"/>
+
+        <generate template="bean/personal-auth.xml" destfile="personal-auth.xml" charset="GBK"/>
+		<generate template="bean/ac-auth.xml" destfile="ac-auth.xml" charset="GBK"/>
+		
+        <generate template="bean/daemon-datasource.xml" destfile="daemon-datasource.xml" charset="GBK"/>
+        
+        <generate template="bean/ac-datasource.xml" destfile="ac-datasource.xml" charset="GBK"/>
+        
+    </script>
+</config>

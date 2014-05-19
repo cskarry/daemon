@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="GB2312"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:lang="http://www.springframework.org/schema/lang" xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+           http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-2.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd"
+    default-autowire="byName">
+
+
+	<bean id="oldCompanyDataSource" class="com.taobao.tddl.jdbc.group.TGroupDataSource" init-method="init">
+        <property name="appName" value="${talos_tddl_company_appName}" />
+        <property name="dbGroupKey" value="${talos_tddl_company_dbGroupKey}" />
+    </bean>
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="oldCompanyDataSource" />
+	</bean>
+
+	<bean id="seperateDbJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="companyDataSource" />
+	</bean>
+
+	<bean id="authDataDefinitionService" class="com.alibaba.china.talos.platform.dataitem.service.inner.impl.AuthDataDefinitionServiceImpl" />
+</beans>

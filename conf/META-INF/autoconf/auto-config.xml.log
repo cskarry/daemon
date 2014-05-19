@@ -1,0 +1,7 @@
+Last Configured at: Tue Jan 14 22:40:47 CST 2014
+
+Base URL: file:/home/justin/workspace/2.0talos/talos/daemon/conf/
+Descriptor: META-INF/autoconf/auto-config.xml
+
+Generating META-INF/autoconf/base_fun.sh.vm => bin/base_fun.sh
+Generating META-INF/autoconf/daemon.sh.vm => bin/daemon.sh

@@ -1,0 +1,34 @@
+#!/bin/bash
+
+##================ setting args ===============
+. ${talos_task_deployhome}/bin/base_fun.sh
+DEBUGPORT=`expr 8089`  
+TASK_NAME="initPersonalAuthData4InterruptFileTaskAO" 
+SPRING_CONFIG="personal-auth.xml"
+FILE_PATH="/Users/apple/Downloads/test"
+MAX_THREAD_NUM="20"
+MIN_THREAD_NUM="5"
+OUTPUT_FILE=$CONSOLE_PATH/$TASK_NAME.log 
+JAVA_OPTION="-DtaskName=$TASK_NAME -DspringConfig=$SPRING_CONFIG -DfilePath=$FILE_PATH -DmaxThreadNum=$MAX_THREAD_NUM -DminThreadNum=$MIN_THREAD_NUM -Xms256m -Xmx512m "
+DEBUG_OPTION=" -Xdebug -Xrunjdwp:transport=dt_socket,address=$DEBUGPORT,server=y,suspend=y"
+ENCODE_OPTS="-Dapplication.codeset=GBK -Ddatabase.codeset=ISO-8859-1 -Djox.xml.encodinged=true" 
+
+##=============================================
+if [ "$1" = "start" ] ; then
+  if ! ps -ef |grep 'java' |grep "$TASK_NAME"
+  then
+    ##================ running ====================
+    echo "`date`:run --------------------------------" >> $OUTPUT_FILE
+    nohup java $JAVA_OPTION -cp $CLASSPATH $ENCODE_OPTS com.alibaba.china.talos.daemon.RunClient $TASK_NAME  1>>$OUTPUT_FILE 2>>$OUTPUT_FILE &
+    echo "task has been started!"
+    ##=============================================
+  else
+    echo "the task is alreay running !!"
+  fi 
+elif [ "$1" = "debug" ] ; then
+    echo "`date`:debug --------------------------------" >> $OUTPUT_FILE 
+    java $JAVA_OPTION $DEBUG_OPTION -cp $CLASSPATH $ENCODE_OPTS com.alibaba.china.talos.daemon.RunClient $TASK_NAME  1>>$OUTPUT_FILE 2>>$OUTPUT_FILE
+    echo "task has been started!"
+else
+  echo "usage: $0 [start|debug]"
+fi 

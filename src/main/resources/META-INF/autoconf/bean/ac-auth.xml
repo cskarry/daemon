@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="GB2312"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:lang="http://www.springframework.org/schema/lang" xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+           http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-2.0.xsd
+           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd"
+    default-autowire="byName">
+    
+	<context:annotation-config />
+	
+    <import resource="classpath:talos/bean/common/biz-hsf-ref.xml"/>
+    <import resource="classpath:talos/bean/common/biz-dubbo-ref.xml" />
+    <import resource="classpath:talos/bean/common/component-tools.xml"/>
+    
+    
+    <import resource="ac-datasource.xml" />
+    
+    <!-- 个人实名认证 -->
+  	<bean id="pnaInfoDAO" class="com.alibaba.china.auth.dal.ibatis.IBatisPNAInfoDAO" parent="baseSqlMapClientDAO" />
+  	
+  	<!-- 认证关系 -->
+	<bean id="authRelDAO" class="com.alibaba.china.auth.dal.ibatis.IBatisAuthRelDAO" parent="baseSqlMapClientDAO" />
+    
+    <bean id="pnaCertNoFixTask" class="com.alibaba.china.talos.service.impl.PNACertNoFixTask" />
+    
+    <bean id="circeConnector" class="com.alibaba.circe.client.impl.CirceConnector"
+		init-method="init" destroy-method="close">
+		<property name="serverAddress" value="${talos_ac_circe_server}" />
+	</bean>
+ 
+	<bean name="circeService" class="com.alibaba.circe.client.impl.CirceServiceImpl"
+		init-method="init" destroy-method="close">
+		<property name="circeConnector" ref="circeConnector" />
+		<property name="namespace" value="authcenter" />
+		<property name="token" value="${talos_ac_circe_token}" />
+	</bean>             
+	
+</beans>

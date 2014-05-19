@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="gb2312"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<!--
+  - @author Michael Zhou
+  - @version $Id: log4j.xml.vm,v 1.14 2006/05/29 13:38:50 bopsdeploy Exp $
+ -->
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+    <!-- ===================================================================== -->
+    <!--  以下是系统appender的定义                                                                              f                  -->
+    <!-- ===================================================================== -->
+    <appender name="PROJECT" class="com.alibaba.common.logging.spi.log4j.DailyRollingFileAppender">
+        <param name="file" value="${talos_task_loggingRoot}/sys/daemon.log"/>
+        <param name="append" value="true"/>
+        <param name="encoding" value="GBK"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %-5p %c{2} - %m%n"/>
+        </layout>
+    </appender>
+    <appender name="SQL" class="com.alibaba.common.logging.spi.log4j.DailyRollingFileAppender">
+        <param name="file" value="${talos_task_loggingRoot}/sys/daemon-sql.log"/>
+        <param name="append" value="true"/>
+        <param name="encoding" value="GBK"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %-5p %c{2} - %m%n"/>
+        </layout>
+    </appender>
+    <appender name="VELOCITY" class="com.alibaba.common.logging.spi.log4j.DailyRollingFileAppender">
+        <param name="file" value="${talos_task_loggingRoot}/sys/daemon-velocity.log"/>
+        <param name="append" value="true"/>
+        <param name="encoding" value="GBK"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %-5p %c{2} - %m%n"/>
+        </layout>
+    </appender>
+    <appender name="PERFORMANCE" class="com.alibaba.common.logging.spi.log4j.DailyRollingFileAppender">
+        <param name="file" value="${talos_task_loggingRoot}/sys/performance.log"/>
+        <param name="append" value="false"/>
+        <param name="encoding" value="GBK"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %-5p - %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- ===================================================================== -->
+    <!--  以下是业务appender的定义                                                                                                -->
+    <!-- ===================================================================== -->
+	
+	<!-- File Process日志  -->
+	<appender name="FileTask" class="com.alibaba.common.logging.spi.log4j.RollingFileAppender">
+		<param name="file" value="${talos_task_loggingRoot}/usr/file/common.log" />
+		<param name="append" value="true" />				
+		<param name="maxFileSize" value="150MB" />
+		<param name="maxBackupIndex" value="200" /> 
+		<param name="encoding" value="GBK" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c{2} - %m%n" />
+		</layout>
+	</appender>
+	
+	<appender name="FileTaskBussinessCommon" class="com.alibaba.common.logging.spi.log4j.DailyRollingFileAppender">
+        <param name="file" value="${talos_task_loggingRoot}/usr/talos/common.log"/>
+		<param name="append" value="true" />				
+		<param name="maxFileSize" value="150MB" />
+		<param name="maxBackupIndex" value="200" /> 
+		<param name="encoding" value="GBK" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c{2} - %m%n" />
+		</layout>
+    </appender>
+	
+	<appender name="InitPeronalAuthDataHandle" class="com.alibaba.common.logging.spi.log4j.RollingFileAppender">
+        <param name="file" value="${talos_task_loggingRoot}/usr/talos/initPeronalAuthData.log"/>
+        <param name="append" value="true" />				
+		<param name="maxFileSize" value="150MB" />
+		<param name="maxBackupIndex" value="200" /> 
+		<param name="encoding" value="GBK" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c{2} - %m%n" />
+		</layout>
+    </appender>
+	
+	<appender name="AvCoverPna4UicTaskAO" class="com.alibaba.common.logging.spi.log4j.RollingFileAppender">
+        <param name="file" value="${talos_task_loggingRoot}/usr/talos/avCoverPna4UicTaskAO.log"/>
+        <param name="append" value="true" />				
+		<param name="maxFileSize" value="150MB" />
+		<param name="maxBackupIndex" value="200" /> 
+		<param name="encoding" value="GBK" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c{2} - %m%n" />
+		</layout>
+    </appender>
+    
+    <appender name="InitAvStageInfo" class="com.alibaba.common.logging.spi.log4j.DailyRollingFileAppender">
+        <param name="file" value="${talos_task_loggingRoot}/usr/talos/initAvStageInfo.log"/>
+        <param name="append" value="true"/>
+        <param name="encoding" value="GBK"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %-5p %c{2} - %m%n"/>
+        </layout>
+    </appender>
+    
+    <appender name="InitAuthProvider" class="com.alibaba.common.logging.spi.log4j.DailyRollingFileAppender">
+        <param name="file" value="${talos_task_loggingRoot}/usr/talos/initAuthProvider.log"/>
+        <param name="append" value="true"/>
+        <param name="encoding" value="GBK"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %-5p %c{2} - %m%n"/>
+        </layout>
+    </appender>
+    
+	<appender name="lwAuditTaskAppender" class="com.alibaba.common.logging.spi.log4j.DailyRollingFileAppender">
+        <param name="file" value="${talos_loggingRoot}/usr/laiwang/lwAudit.log"/>
+        <param name="append" value="true"/>
+        <param name="encoding" value="GBK"/>
+        <layout class="org.apache.log4j.PatternLayout">
+        	<param name="ConversionPattern" value="%d [%X{requestURIWithQueryString}] %-5p %c{2} - %m%n"/>
+        </layout>
+    </appender>
+	
+	<appender name="lwOrgTransferTaskAppender" class="com.alibaba.common.logging.spi.log4j.DailyRollingFileAppender">
+        <param name="file" value="${talos_loggingRoot}/usr/laiwang/lwOrgTransferTask.log"/>
+        <param name="append" value="true"/>
+        <param name="encoding" value="GBK"/>
+        <layout class="org.apache.log4j.PatternLayout">
+        	<param name="ConversionPattern" value="%d [%X{requestURIWithQueryString}] %-5p %c{2} - %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="Taobao4V1006DataCorrectionTask" class="com.alibaba.common.logging.spi.log4j.DailyRollingFileAppender">
+        <param name="file" value="${talos_task_loggingRoot}/usr/talos/taobao4V1006DataCorrection.log"/>
+        <param name="append" value="true"/>
+        <param name="encoding" value="GBK"/>
+        <layout class="org.apache.log4j.PatternLayout">
+        	<param name="ConversionPattern" value="%d [%X{requestURIWithQueryString}] %-5p %c{2} - %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- ===================================================================== -->
+    <!--  以下是系统logger的定义                                                                                                -->
+    <!-- ===================================================================== -->
+    <logger name="java.sql" additivity="false">
+        <level value="warn"/>
+        <appender-ref ref="SQL"/>
+    </logger>
+    <logger name="com.alibaba.china.biz.common.monitor.PerformanceInterceptor" additivity="false">
+        <level value="error"/>
+        <appender-ref ref="PERFORMANCE"/>
+    </logger>
+    <logger name="com.alibaba.service.VelocityService" additivity="false">
+        <level value="${talos_loggingLevel}"/>
+        <appender-ref ref="VELOCITY"/>
+    </logger>
+
+    <!-- ===================================================================== -->
+    <!--  以下是业务logger的定义                                                                                                -->
+    <!-- ===================================================================== -->
+    <logger name="com.alibaba.china.talos" additivity="false">
+        <level value="${talos_loggingLevel}"/>
+		<appender-ref ref="PROJECT"/>
+    </logger>
+	
+	<logger name="com.alibaba.china.talos.file" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="FileTask"/>
+    </logger>
+	
+	<logger name="com.alibaba.china.talos.service.impl" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="FileTaskBussinessCommon"/>
+    </logger>
+	
+	<logger name="com.alibaba.china.talos.service.impl.InitPeronalAuthDataHandle" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="InitPeronalAuthDataHandle"/>
+    </logger>
+	
+	<logger name="com.alibaba.china.talos.service.impl.AvCoverPna4UicTaskAO" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="AvCoverPna4UicTaskAO"/>
+    </logger>
+    
+    <logger name="com.alibaba.china.talos.service.impl.InitAvStageInfo" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="InitAvStageInfo"/>
+    </logger>
+    
+     <logger name="com.alibaba.china.talos.service.impl.InitAuthProvider" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="InitAuthProvider"/>
+    </logger>
+	
+	<logger name="lwAuditTaskLogger" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="lwAuditTaskAppender"/>
+    </logger>
+
+	<logger name="lwOrgTransferTaskLogger" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="lwOrgTransferTaskAppender"/>
+    </logger>
+
+    <logger name="com.alibaba.china.talos.service.impl.Taobao4V1006DataCorrectionTaskAO" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="Taobao4V1006DataCorrectionTask"/>
+    </logger>
+
+    <!-- ===================================================================== -->
+    <!--  Root logger                                                          -->
+    <!-- ===================================================================== -->
+    <root>
+        <level value="${talos_loggingLevel}"/>
+        <appender-ref ref="PROJECT"/>
+    </root>
+</log4j:configuration>

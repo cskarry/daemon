@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="gb2312"?>
+<config>
+	<script>
+		<generate template="base_fun.sh.vm" destfile="bin/base_fun.sh" charset="GBK" />
+
+		<generate template="daemon.sh.vm" destfile="bin/daemon.sh" charset="GBK" />
+		
+		<generate template="quickTasker.sh.vm" destfile="bin/quickTasker.sh" charset="GBK" />
+
+		<generate template="personal-auth.sh.vm" destfile="bin/personal-auth.sh" charset="GBK" />
+		
+		<generate template="personal-auth-interrept.sh.vm" destfile="bin/personal-auth-interrept.sh" charset="GBK" />
+
+		<generate template="small-laucher.sh.vm" destfile="bin/small-laucher.sh" charset="GBK" />
+		
+		<generate template="atomAuthInstance.vm" destfile="bin/atomAuthInstance.sh" charset="GBK" />
+		
+		<generate template="resultAVClearTask.vm" destfile="bin/resultAVClearTask.sh" charset="GBK" />
+		
+		<generate template="initAvStageInfo.sh.vm" destfile="bin/initAvStageInfo.sh" charset="GBK" />
+		
+		<generate template="initAuthProvider.sh.vm" destfile="bin/initAuthProvider.sh" charset="GBK" />
+		<generate template="laiwangAuditTask.sh.vm" destfile="bin/laiwangAuditTask.sh" charset="GBK" />
+		<generate template="laiwangOrgTransferTask.sh.vm" destfile="bin/laiwangOrgTransferTask.sh" charset="GBK" />
+		<generate template="laiwangPnaTransferTask.sh.vm" destfile="bin/laiwangPnaTransferTask.sh" charset="GBK" />
+	</script>
+</config>
